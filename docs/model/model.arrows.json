@@ -1,0 +1,239 @@
+{
+  "graph": {
+    "style": {},
+    "nodes": [
+      {
+        "id": "n0",
+        "position": {
+          "x": 0,
+          "y": 420
+        },
+        "caption": "",
+        "labels": [
+          "User"
+        ],
+        "properties": {
+          "id": "String",
+          "username": "String",
+          "country": "String",
+          "birthYear": "Integer",
+          "signupDate": "Date",
+          "status": "String",
+          "tasteCommunity": "Integer (derivado)",
+          "influence": "Float (derivado)"
+        },
+        "style": {}
+      },
+      {
+        "id": "n1",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "caption": "",
+        "labels": [
+          "Playlist"
+        ],
+        "properties": {
+          "id": "String",
+          "name": "String",
+          "createdAt": "Date"
+        },
+        "style": {}
+      },
+      {
+        "id": "n2",
+        "position": {
+          "x": 0,
+          "y": 900
+        },
+        "caption": "",
+        "labels": [
+          "Genre"
+        ],
+        "properties": {
+          "name": "String"
+        },
+        "style": {}
+      },
+      {
+        "id": "n3",
+        "position": {
+          "x": 800,
+          "y": 420
+        },
+        "caption": "",
+        "labels": [
+          "Track"
+        ],
+        "properties": {
+          "id": "String",
+          "name": "String",
+          "songKey": "String",
+          "popularity": "Integer",
+          "durationMs": "Integer",
+          "explicit": "Boolean",
+          "danceability|energy|valence|acousticness|instrumentalness|speechiness|liveness|loudness|tempo": "Float",
+          "key|mode|timeSignature": "Integer",
+          "features": "Float[9]"
+        },
+        "style": {}
+      },
+      {
+        "id": "n4",
+        "position": {
+          "x": 1500,
+          "y": 150
+        },
+        "caption": "",
+        "labels": [
+          "Artist"
+        ],
+        "properties": {
+          "name": "String"
+        },
+        "style": {}
+      },
+      {
+        "id": "n5",
+        "position": {
+          "x": 1500,
+          "y": 700
+        },
+        "caption": "",
+        "labels": [
+          "Album"
+        ],
+        "properties": {
+          "id": "String",
+          "name": "String"
+        },
+        "style": {}
+      }
+    ],
+    "relationships": [
+      {
+        "id": "r0",
+        "fromId": "n0",
+        "toId": "n3",
+        "type": "LISTENED",
+        "properties": {
+          "playCount": "Integer",
+          "lastPlayed": "Date"
+        },
+        "style": {}
+      },
+      {
+        "id": "r1",
+        "fromId": "n0",
+        "toId": "n3",
+        "type": "LIKED",
+        "properties": {
+          "likedAt": "Date"
+        },
+        "style": {}
+      },
+      {
+        "id": "r2",
+        "fromId": "n0",
+        "toId": "n0",
+        "type": "FOLLOWS",
+        "properties": {
+          "since": "Date"
+        },
+        "style": {}
+      },
+      {
+        "id": "r3",
+        "fromId": "n0",
+        "toId": "n0",
+        "type": "SIMILAR_TASTE",
+        "properties": {
+          "score": "Float (derivado)"
+        },
+        "style": {}
+      },
+      {
+        "id": "r4",
+        "fromId": "n0",
+        "toId": "n2",
+        "type": "PREFERS",
+        "properties": {},
+        "style": {}
+      },
+      {
+        "id": "r5",
+        "fromId": "n0",
+        "toId": "n1",
+        "type": "CREATED",
+        "properties": {},
+        "style": {}
+      },
+      {
+        "id": "r6",
+        "fromId": "n1",
+        "toId": "n3",
+        "type": "CONTAINS",
+        "properties": {
+          "position": "Integer"
+        },
+        "style": {}
+      },
+      {
+        "id": "r7",
+        "fromId": "n3",
+        "toId": "n2",
+        "type": "HAS_GENRE",
+        "properties": {},
+        "style": {}
+      },
+      {
+        "id": "r8",
+        "fromId": "n3",
+        "toId": "n4",
+        "type": "PERFORMED_BY",
+        "properties": {
+          "position": "Integer"
+        },
+        "style": {}
+      },
+      {
+        "id": "r9",
+        "fromId": "n3",
+        "toId": "n5",
+        "type": "IN_ALBUM",
+        "properties": {},
+        "style": {}
+      },
+      {
+        "id": "r10",
+        "fromId": "n5",
+        "toId": "n4",
+        "type": "RELEASED_BY",
+        "properties": {},
+        "style": {}
+      },
+      {
+        "id": "r11",
+        "fromId": "n3",
+        "toId": "n3",
+        "type": "SIMILAR_TO",
+        "properties": {
+          "score": "Float (derivado)"
+        },
+        "style": {}
+      },
+      {
+        "id": "r12",
+        "fromId": "n2",
+        "toId": "n2",
+        "type": "CO_OCCURS_WITH",
+        "properties": {
+          "tracks": "Integer (derivado)"
+        },
+        "style": {}
+      }
+    ]
+  },
+  "diagramName": "Recomendação de músicas"
+}

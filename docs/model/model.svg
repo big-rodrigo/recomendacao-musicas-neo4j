@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="960" viewBox="0 0 1640 960" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4a5568"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #4a5568; stroke-width: 1.5; }
+      .hdr { font-size: 17px; font-weight: 700; fill: #1a202c; }
+      .prop { font-size: 13.5px; fill: #2d3748; font-family: Consolas, Menlo, monospace; }
+      .der { fill: #9c4221; }
+      .edge { stroke: #4a5568; stroke-width: 1.6; fill: none; marker-end: url(#arrow); }
+      .edge.derived { stroke-dasharray: 6 4; stroke: #9c4221; }
+      .rel { font-size: 13px; font-weight: 700; fill: #1a202c; }
+      .rel.derived { fill: #9c4221; }
+      .rprop { font-size: 12px; fill: #4a5568; font-family: Consolas, Menlo, monospace; }
+      .title { font-size: 22px; font-weight: 700; fill: #1a202c; }
+      .note { font-size: 13px; fill: #4a5568; }
+    </style>
+  </defs>
+  <rect width="1640" height="960" fill="#ffffff"/>
+  <text x="20" y="34" class="title">Modelo do grafo — recomendação de músicas</text>
+
+  <g transform="translate(100,20)">
+    <!-- ===================== NÓS ===================== -->
+    <!-- Playlist -->
+    <rect x="140" y="60" width="260" height="111" rx="8" class="box"/>
+    <rect x="140" y="60" width="260" height="36" rx="8" fill="#a3bffa"/>
+    <rect x="140" y="88" width="260" height="8" fill="#a3bffa"/>
+    <text x="156" y="84" class="hdr">:Playlist</text>
+    <text x="156" y="118" class="prop">id: String (único)</text>
+    <text x="156" y="139" class="prop">name: String</text>
+    <text x="156" y="160" class="prop">createdAt: Date</text>
+
+    <!-- User -->
+    <rect x="140" y="330" width="260" height="216" rx="8" class="box"/>
+    <rect x="140" y="330" width="260" height="36" rx="8" fill="#9ae6b4"/>
+    <rect x="140" y="358" width="260" height="8" fill="#9ae6b4"/>
+    <text x="156" y="354" class="hdr">:User</text>
+    <text x="156" y="388" class="prop">id: String (único)</text>
+    <text x="156" y="409" class="prop">username: String</text>
+    <text x="156" y="430" class="prop">country: String</text>
+    <text x="156" y="451" class="prop">birthYear: Integer</text>
+    <text x="156" y="472" class="prop">signupDate: Date</text>
+    <text x="156" y="493" class="prop">status: 'active' | 'new'</text>
+    <text x="156" y="514" class="prop der">tasteCommunity†: Integer</text>
+    <text x="156" y="535" class="prop der">influence†: Float</text>
+
+    <!-- Genre -->
+    <rect x="140" y="800" width="260" height="69" rx="8" class="box"/>
+    <rect x="140" y="800" width="260" height="36" rx="8" fill="#fbd38d"/>
+    <rect x="140" y="828" width="260" height="8" fill="#fbd38d"/>
+    <text x="156" y="824" class="hdr">:Genre</text>
+    <text x="156" y="858" class="prop">name: String (único)</text>
+
+    <!-- Track -->
+    <rect x="700" y="250" width="300" height="300" rx="8" class="box"/>
+    <rect x="700" y="250" width="300" height="36" rx="8" fill="#68d391"/>
+    <rect x="700" y="278" width="300" height="8" fill="#68d391"/>
+    <text x="716" y="274" class="hdr">:Track</text>
+    <text x="716" y="308" class="prop">id: String (único)</text>
+    <text x="716" y="329" class="prop">name: String</text>
+    <text x="716" y="350" class="prop">songKey: String (índice)</text>
+    <text x="716" y="371" class="prop">popularity: Integer (índice)</text>
+    <text x="716" y="392" class="prop">durationMs: Integer</text>
+    <text x="716" y="413" class="prop">explicit: Boolean</text>
+    <text x="716" y="434" class="prop">danceability, energy,</text>
+    <text x="716" y="455" class="prop">valence, acousticness,</text>
+    <text x="716" y="476" class="prop">instrumentalness, speechiness,</text>
+    <text x="716" y="497" class="prop">liveness, loudness, tempo: Float</text>
+    <text x="716" y="518" class="prop">key, mode, timeSignature: Int</text>
+    <text x="716" y="539" class="prop">features: Float[9] (vetorial)</text>
+
+    <!-- Artist -->
+    <rect x="1260" y="150" width="240" height="69" rx="8" class="box"/>
+    <rect x="1260" y="150" width="240" height="36" rx="8" fill="#d6bcfa"/>
+    <rect x="1260" y="178" width="240" height="8" fill="#d6bcfa"/>
+    <text x="1276" y="174" class="hdr">:Artist</text>
+    <text x="1276" y="208" class="prop">name: String (único)</text>
+
+    <!-- Album -->
+    <rect x="1260" y="480" width="240" height="90" rx="8" class="box"/>
+    <rect x="1260" y="480" width="240" height="36" rx="8" fill="#feb2b2"/>
+    <rect x="1260" y="508" width="240" height="8" fill="#feb2b2"/>
+    <text x="1276" y="504" class="hdr">:Album</text>
+    <text x="1276" y="538" class="prop">id: nome|artista (único)</text>
+    <text x="1276" y="559" class="prop">name: String</text>
+
+    <!-- ===================== RELACIONAMENTOS ===================== -->
+    <!-- CREATED -->
+    <path d="M270,330 L270,173" class="edge"/>
+    <text x="280" y="250" class="rel">CREATED</text>
+
+    <!-- CONTAINS -->
+    <path d="M400,120 L698,295" class="edge"/>
+    <text x="520" y="172" class="rel">CONTAINS</text>
+    <text x="520" y="187" class="rprop">{position}</text>
+
+    <!-- LISTENED -->
+    <path d="M400,400 L698,400" class="edge"/>
+    <text x="550" y="390" class="rel" text-anchor="middle">LISTENED</text>
+    <text x="550" y="418" class="rprop" text-anchor="middle">{playCount, lastPlayed}</text>
+
+    <!-- LIKED -->
+    <path d="M400,470 L698,470" class="edge"/>
+    <text x="550" y="460" class="rel" text-anchor="middle">LIKED</text>
+    <text x="550" y="488" class="rprop" text-anchor="middle">{likedAt}</text>
+
+    <!-- PREFERS -->
+    <path d="M270,546 L270,798" class="edge"/>
+    <text x="280" y="680" class="rel">PREFERS</text>
+
+    <!-- HAS_GENRE -->
+    <path d="M760,550 L402,830" class="edge"/>
+    <text x="600" y="700" class="rel">HAS_GENRE</text>
+
+    <!-- PERFORMED_BY -->
+    <path d="M1000,300 L1258,195" class="edge"/>
+    <text x="1060" y="232" class="rel">PERFORMED_BY</text>
+    <text x="1060" y="247" class="rprop">{position}</text>
+
+    <!-- IN_ALBUM -->
+    <path d="M1000,500 L1258,520" class="edge"/>
+    <text x="1080" y="495" class="rel">IN_ALBUM</text>
+
+    <!-- RELEASED_BY -->
+    <path d="M1380,480 L1380,221" class="edge"/>
+    <text x="1390" y="355" class="rel">RELEASED_BY</text>
+
+    <!-- SIMILAR_TO (derivado) -->
+    <path d="M820,250 C820,170 920,170 920,248" class="edge derived"/>
+    <text x="870" y="160" class="rel derived" text-anchor="middle">SIMILAR_TO†</text>
+    <text x="870" y="145" class="rprop" text-anchor="middle">{score}</text>
+
+    <!-- FOLLOWS -->
+    <path d="M140,372 C70,372 70,420 138,420" class="edge"/>
+    <text x="0" y="390" class="rel">FOLLOWS</text>
+    <text x="0" y="405" class="rprop">{since}</text>
+
+    <!-- SIMILAR_TASTE (derivado) -->
+    <path d="M140,465 C70,465 70,513 138,513" class="edge derived"/>
+    <text x="0" y="483" class="rel derived">SIMILAR_</text>
+    <text x="0" y="498" class="rel derived">TASTE†</text>
+    <text x="0" y="513" class="rprop">{score}</text>
+
+    <!-- CO_OCCURS_WITH (derivado) -->
+    <path d="M140,815 C70,815 70,855 138,855" class="edge derived"/>
+    <text x="0" y="890" class="rel derived">CO_OCCURS_WITH†</text>
+    <text x="0" y="905" class="rprop">{tracks}</text>
+
+    <!-- Legenda -->
+    <g transform="translate(1100,700)">
+      <rect x="0" y="0" width="400" height="150" rx="8" fill="#f7fafc" stroke="#cbd5e0"/>
+      <text x="16" y="28" class="hdr" style="font-size:15px">Legenda</text>
+      <path d="M16,55 L76,55" class="edge"/>
+      <text x="88" y="60" class="note">relacionamento carregado de CSV</text>
+      <path d="M16,85 L76,85" class="edge derived"/>
+      <text x="88" y="90" class="note">relacionamento derivado (04_derived.cypher)</text>
+      <text x="16" y="118" class="note">† propriedade/relacionamento calculado no grafo</text>
+      <text x="16" y="138" class="note">{…} propriedades do relacionamento</text>
+    </g>
+  </g>
+</svg>

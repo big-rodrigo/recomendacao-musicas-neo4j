@@ -1,0 +1,6 @@
+data/raw/
+data/seed/
+__pycache__/
+*.pyc
+docs/img/_debug.png
+.venv/
